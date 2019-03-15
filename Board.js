@@ -6,6 +6,8 @@ class Board {
     this.queenPositionArray = positions;
     this.hash = this.hashCode();
   }
+
+  // Print out the solution
   show() {
     let board = [];
     let boardSize = this.nQueen * this.nQueen;
@@ -21,6 +23,8 @@ class Board {
     }
     console.log(board.join(""));
   }
+
+  // Get all of the possible neighbors
   neighbors() {
     let boardSize = this.nQueen * this.nQueen;
     let neighbors = [];
@@ -35,6 +39,7 @@ class Board {
     return neighbors;
   }
 
+  // Hash the current board
   hashCode() {
     if (this.queenPositions.size === 0) {
       return -1;

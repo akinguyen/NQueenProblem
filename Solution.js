@@ -1,8 +1,11 @@
 var Board = require("./Board");
 class Solution {
   constructor(n) {
+    // Number of queen
     this.size = n;
   }
+
+  // Check if the current queen is not attacked by others vertically
   isRowSafe(pos, queenPositions, n) {
     let diff = pos - (pos % n);
     for (let i = 0; i < n; i++) {
@@ -12,6 +15,8 @@ class Solution {
     }
     return true;
   }
+
+  // Check if the current queen is not attacked by others horizontally
   isColSafe(pos, queenPositions, n) {
     let colNum = pos % n;
     for (let i = colNum; i <= colNum + n * (n - 1); i += n) {
@@ -27,6 +32,8 @@ class Solution {
   col(pos, n) {
     return pos % n;
   }
+
+  // Check if the current queen is not attacked by others diagonally
   isDiagonalSafe(pos, queenPositions, n) {
     let upperLeft = pos;
     while (this.row(upperLeft, n) !== 0 && this.col(upperLeft, n) !== 0) {
@@ -65,6 +72,8 @@ class Solution {
     }
     return true;
   }
+
+  // Check if positions of all queens are safe
   isSafe(board, n) {
     for (var pos of board.queenPositions) {
       if (
@@ -77,6 +86,8 @@ class Solution {
     }
     return true && board.hash !== -1;
   }
+
+  //BFS iterative approach
   main() {
     let n = this.size;
     var board = new Board([], n);
@@ -87,6 +98,8 @@ class Solution {
       state = frontier.splice(0, 1)[0];
       let neighbors = state.neighbors();
       explored.add(state.hash);
+
+      // Check if the current state is the solution
       if (this.isSafe(state, n) && state.queenPositions.size === n) {
         state.show();
         return state;
@@ -94,6 +107,7 @@ class Solution {
 
       for (var neighbor of neighbors) {
         if (!explored.has(neighbor.hash)) {
+          // Prune down the unsafe neighbor
           if (this.isSafe(neighbor, n)) {
             frontier.push(neighbor);
           }
