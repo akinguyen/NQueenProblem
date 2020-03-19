@@ -5,7 +5,7 @@ be updated with A* algorithm.
 
  
 * See the result by simply running `node main.js`
-* See different `n` solution by modifying `var solution = new Solution(4)` into `var solution = new Solution(n);` 
+* See different `n` solution by modifying `var solution = new Solution(4)` into `var solution = new Solution(n);` inside `main.js` 
 
 
 #### The online animation demo for the N-Queen (BFS approach) is on my CodePen dashboard:
